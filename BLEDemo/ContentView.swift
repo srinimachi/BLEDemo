@@ -36,11 +36,13 @@ class BluetoothViewModel: NSObject, ObservableObject, CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         isConnected = true
+        print("reload widget to update time of connect")
         WidgetCenter.shared.reloadAllTimelines()
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         isConnected = false
+        print("reload widget to update time of disconnect")
         WidgetCenter.shared.reloadAllTimelines()
     }
 }

@@ -44,11 +44,9 @@ struct Widget_DemoEntryView : View {
 
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
+            Text("Last Updated Time:")
+            Text(entry.date, style: .timer)
+                .multilineTextAlignment(.center)
         }
     }
 }
