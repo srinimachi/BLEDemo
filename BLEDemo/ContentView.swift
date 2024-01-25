@@ -32,7 +32,7 @@ class BluetoothViewModel: NSObject, ObservableObject, CBCentralManagerDelegate, 
         if peripheral.identifier == targetDeviceUUID {
             self.peripheral = peripheral
             self.peripheral?.delegate = self
-            central.connect(peripheral, options: nil)
+            central.connect(peripheral, options: [CBConnectPeripheralOptionNotifyOnNotificationKey: true])
         }
     }
 
@@ -71,8 +71,6 @@ class BluetoothViewModel: NSObject, ObservableObject, CBCentralManagerDelegate, 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if characteristic.uuid == SOME_BLE_CHARACTERISTIC
         {
-            
-            //HERE the widget is not reloading in background
             print("reload widget to update time of characterstic")
             WidgetCenter.shared.reloadAllTimelines()
         }
